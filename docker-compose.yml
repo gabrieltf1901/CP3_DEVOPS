@@ -1,0 +1,20 @@
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_HOST=database
+      - DB_PORT=1521
+      - DB_USER=rm553635
+      - DB_PASSWORD=190101
+      - DB_DSN=oracle.fiap.com.br:1521/orcl
+  database:
+    image: gvenzl/oracle-xe:18-slim
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+volumes:
+  oracle-data:
